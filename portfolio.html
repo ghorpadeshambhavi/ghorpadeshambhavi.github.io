@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Shambhavi Ghorpade — Backend Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0F1216;
+    --raised: #161A20;
+    --ink: #E4E7EA;
+    --ink-soft: #838C96;
+    --ink-faint: #565F68;
+    --accent: #6FA8D8;
+    --ok: #6FCF97;
+    --warn: #E0A75E;
+    --idle: #565F68;
+    --line: #262B32;
+    --mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0F1216; --raised: #161A20; --ink: #E4E7EA; --ink-soft: #838C96;
+      --ink-faint: #565F68; --accent: #6FA8D8; --ok: #6FCF97; --warn: #E0A75E;
+      --idle: #565F68; --line: #262B32;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0F1216; --raised: #161A20; --ink: #E4E7EA; --ink-soft: #838C96;
+    --ink-faint: #565F68; --accent: #6FA8D8; --ok: #6FCF97; --warn: #E0A75E;
+    --idle: #565F68; --line: #262B32;
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--mono); line-height: 1.6; font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 700px; margin: 0 auto; padding: 3.5rem 1.4rem 5rem; }
+
+  .prompt { color: var(--ink-faint); font-size: 0.82rem; }
+  .prompt::before { content: "❯ "; color: var(--accent); }
+  .cursor { display: inline-block; width: 8px; height: 1.05em; background: var(--accent); vertical-align: text-bottom; margin-left: 2px; animation: blink 1.1s step-end infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  h1 { font-size: clamp(1.6rem, 4.5vw, 2.1rem); font-weight: 700; margin: 0.5rem 0 0.3rem; letter-spacing: -0.01em; }
+  .tagline { color: var(--ink-soft); font-size: 0.95rem; margin: 0 0 1rem; max-width: 56ch; }
+  .meta { color: var(--ink-faint); font-size: 0.82rem; }
+  .meta .dot { color: var(--ok); }
+  .contact { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; font-size: 0.82rem; color: var(--ink-soft); margin-top: 1.1rem; }
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }
+  a:hover, a:focus-visible { border-bottom-color: var(--accent); }
+
+  section { margin-top: 3rem; }
+  h2 {
+    font-size: 0.78rem; text-transform: none; font-weight: 600; letter-spacing: 0.01em;
+    color: var(--ink-faint); margin: 0 0 1.1rem; padding-bottom: 0.55rem; border-bottom: 1px solid var(--line);
+  }
+  h2 .n { color: var(--accent); }
+
+  p.body-text { color: var(--ink); font-size: 0.93rem; max-width: 60ch; }
+
+  .kv { display: grid; grid-template-columns: 150px 1fr; row-gap: 0.55rem; column-gap: 1rem; font-size: 0.88rem; }
+  .kv dt { color: var(--ink-faint); }
+  .kv dd { margin: 0; color: var(--ink); }
+
+  .entry { display: grid; grid-template-columns: 118px 1fr; gap: 1rem; margin-bottom: 1.9rem; }
+  .entry:last-child { margin-bottom: 0; }
+  .entry time { color: var(--ink-faint); font-size: 0.76rem; padding-top: 0.2rem; }
+  .entry .role-title { font-weight: 600; font-size: 0.98rem; margin: 0 0 0.1rem; color: var(--ink); }
+  .entry .org { color: var(--ink-soft); font-size: 0.85rem; margin: 0 0 0.5rem; }
+  .entry ul { margin: 0; padding-left: 1.1rem; font-size: 0.87rem; color: var(--ink); }
+  .entry li { margin-bottom: 0.3rem; }
+
+  .svc { display: grid; grid-template-columns: 12px 1fr auto; align-items: start; gap: 0.75rem; padding: 0.9rem 0; border-bottom: 1px solid var(--line); }
+  .svc:last-child { border-bottom: none; }
+  .svc .dot { width: 9px; height: 9px; border-radius: 50%; margin-top: 0.4rem; }
+  .svc .dot.ok { background: var(--ok); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok) 18%, transparent); }
+  .svc .dot.warn { background: var(--warn); box-shadow: 0 0 0 3px color-mix(in srgb, var(--warn) 18%, transparent); }
+  .svc .dot.idle { background: var(--idle); }
+  .svc .name { font-weight: 600; font-size: 0.95rem; color: var(--ink); }
+  .svc .desc { color: var(--ink-soft); font-size: 0.85rem; margin-top: 0.25rem; max-width: 50ch; }
+  .svc .stack { color: var(--ink-faint); font-size: 0.76rem; margin-top: 0.4rem; }
+  .svc .status { font-size: 0.72rem; text-align: right; white-space: nowrap; padding-top: 0.15rem; letter-spacing: 0.03em; }
+  .svc .status.ok { color: var(--ok); }
+  .svc .status.warn { color: var(--warn); }
+  .svc .status.idle { color: var(--idle); }
+
+  footer { margin-top: 4rem; padding-top: 1.4rem; border-top: 1px solid var(--line); color: var(--ink-faint); font-size: 0.8rem; }
+
+  @media (max-width: 560px) {
+    .entry { grid-template-columns: 1fr; gap: 0.25rem; }
+    .kv { grid-template-columns: 1fr; row-gap: 0.15rem; }
+    .kv dt { margin-top: 0.5rem; }
+    .svc { grid-template-columns: 12px 1fr; }
+    .svc .status { grid-column: 2; text-align: left; margin-top: 0.3rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="prompt">whoami</div>
+    <h1>Shambhavi Ghorpade<span class="cursor"></span></h1>
+    <p class="tagline">Backend developer — APIs, databases &amp; cloud infrastructure. Currently extending into AI infra and Node.js/TypeScript backends.</p>
+    <div class="meta"><span class="dot">●</span> available for opportunities · Bengaluru, KA, IN</div>
+    <div class="contact">
+      <span>ghorpadeshambhavi@gmail.com</span>
+      <span>+91 80889-36588</span>
+      <span><a href="https://github.com/ghorpadeshambhavi/ghorpadeshambhavi" target="_blank" rel="noopener">GitHub</a></span>
+      <span><a href="https://www.linkedin.com/in/shambhavighorpade-python-developer" target="_blank" rel="noopener">LinkedIn</a></span>
+    </div>
+  </header>
+
+  <section>
+    <h2>summary</h2>
+    <p class="body-text">1.8 years at Accenture plus ongoing freelance work, building REST APIs, microservice architectures, and database-driven systems with Flask, Django, MySQL, PostgreSQL, AWS, and Docker — including a real-time industrial data platform integrating heterogeneous sources. Comfortable working close to the data layer and shipping projects end to end.</p>
+  </section>
+
+  <section>
+    <h2>stack</h2>
+    <dl class="kv">
+      <dt>languages</dt><dd>Python, JavaScript, HTML, CSS</dd>
+      <dt>frameworks</dt><dd>Flask, Django — REST APIs, auth, exception handling, logging</dd>
+      <dt>databases</dt><dd>MySQL, PostgreSQL — schema design, query optimization</dd>
+      <dt>cloud/devops</dt><dd>AWS (EC2, RDS, S3, Lambda), Docker, CI/CD</dd>
+      <dt>architecture</dt><dd>REST APIs, microservices, data integration pipelines</dd>
+      <dt>tools</dt><dd>Git, Agile/Scrum, Jira</dd>
+    </dl>
+  </section>
+
+  <section>
+    <h2>experience</h2>
+    <div>
+      <div class="entry">
+        <time>2023 – now</time>
+        <div>
+          <p class="role-title">Freelance Web &amp; Backend Developer</p>
+          <p class="org">Independent</p>
+          <ul>
+            <li>Owned full backend lifecycle for startup and small-business clients, requirements through deployment.</li>
+            <li>Built Flask/Django APIs on MySQL, containerized with Docker; designed microservice-based architectures.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="entry">
+        <time>2022 – 2023</time>
+        <div>
+          <p class="role-title">Application Development Engineer Associate</p>
+          <p class="org">Accenture, Bengaluru</p>
+          <ul>
+            <li>Designed REST APIs and backend services in Flask for enterprise applications in an Agile environment.</li>
+            <li>Built the backend for a Digital Twin (Oil &amp; Gas, Cognite Data Fusion) — real-time asset monitoring across unified data sources.</li>
+            <li>Improved system reliability by 20% through bug fixes and performance tuning.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>projects <span class="n">— shipped</span></h2>
+    <div class="svc">
+      <span class="dot ok"></span>
+      <div>
+        <div class="name">Flow-Desk</div>
+        <div class="desc">Work Operations Management Platform — task management, asset tracking, productivity logs, and reporting in one system.</div>
+        <div class="stack">Python · Flask · MySQL</div>
+      </div>
+      <div class="status ok">LIVE</div>
+    </div>
+    <div class="svc">
+      <span class="dot ok"></span>
+      <div>
+        <div class="name">Student Management System</div>
+        <div class="desc">RESTful API for full CRUD on student records with structured, efficient endpoints.</div>
+        <div class="stack">Python · Flask</div>
+      </div>
+      <div class="status ok">LIVE</div>
+    </div>
+    <div class="svc">
+      <span class="dot ok"></span>
+      <div>
+        <div class="name">Digital ID System</div>
+        <div class="desc">Digital identity management — authentication, role-based access, user profile management.</div>
+        <div class="stack">Python · MySQL</div>
+      </div>
+      <div class="status ok">LIVE</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>projects <span class="n">— in progress</span></h2>
+    <div class="svc">
+      <span class="dot warn"></span>
+      <div>
+        <div class="name">Document Q&amp;A / RAG service</div>
+        <div class="desc">Retrieval-augmented Q&amp;A over a document set — vector search plus an LLM answering endpoint.</div>
+        <div class="stack">Python · FastAPI · Vector DB</div>
+      </div>
+      <div class="status warn">BUILDING</div>
+    </div>
+    <div class="svc">
+      <span class="dot warn"></span>
+      <div>
+        <div class="name">NestJS backend service</div>
+        <div class="desc">A CRUD API with a caching layer and containerized deployment, built to pick up the Node.js/TypeScript stack.</div>
+        <div class="stack">Node.js · NestJS · PostgreSQL · Redis</div>
+      </div>
+      <div class="status warn">BUILDING</div>
+    </div>
+    <div class="svc">
+      <span class="dot idle"></span>
+      <div>
+        <div class="name">CI pipeline for existing projects</div>
+        <div class="desc">Adding automated tests and GitHub Actions to the projects above.</div>
+        <div class="stack">GitHub Actions</div>
+      </div>
+      <div class="status idle">PLANNED</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>education</h2>
+    <div class="entry">
+      <time>2016 – 2020</time>
+      <div>
+        <p class="role-title">Bachelor of Engineering</p>
+        <p class="org">Computer Science Engineering</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="prompt">contact --email ghorpadeshambhavi@gmail.com --phone +91-80889-36588</div>
+    <div class="prompt" style="margin-top:0.5rem;">open --github <a href="https://github.com/ghorpadeshambhavi/ghorpadeshambhavi" target="_blank" rel="noopener">ghorpadeshambhavi</a> --linkedin <a href="https://www.linkedin.com/in/shambhavighorpade-python-developer" target="_blank" rel="noopener">shambhavighorpade</a></div>
+  </footer>
+
+</div>
+</body>
+</html>
